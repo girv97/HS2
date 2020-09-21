@@ -28,7 +28,6 @@ from herdingspikes.probe import NeuroPixel
 import matplotlib.pyplot as plt
 get_ipython().run_line_magic('matplotlib', 'inline')
 
-
 # %%
 # raw data file (as downloaded above)
 data_path = "notebooks/rawDataSample.bin"
@@ -38,7 +37,6 @@ file_directory = 'results/'
 file_name = 'ProcessedSpikesNeuropixel'
 
 
-# %%
 Probe = NeuroPixel(data_path, neighbor_radius=120,
                    masked_channels=[36, 75, 112, 151, 188, 227, 264, 303, 340, 379, 384])
 
@@ -49,11 +47,8 @@ H = HSDetection(Probe, num_com_centers=2, threshold=20,
                 file_directory_name=file_directory, decay_filtering=True, save_all=True)
 
 
-# %%
-Probe.show()
+# %% Probe.show()
 
-
-# %%
 H.DetectFromRaw()
 
 
@@ -83,8 +78,8 @@ from herdingspikes.hs2 import HSClustering
 
 # Or if the spikes are already in memory
 # simply load from the Detection class
-C = HSClustering(H)
-
+#C = HSClustering('C:\\Users\\Berthie\\Documents\\HS2\\results\\ProcessedSpikesNeuropixel.bin', 43)
+C = HSClustering('C:\\Users\\Berthie\\Documents\\HS2\\results\\test_file.bin', 43)
 
 # %%
 get_ipython().run_cell_magic('time', '', '# Compute features\nC.ShapePCA(pca_ncomponents=2, pca_whiten=True);')
@@ -118,7 +113,6 @@ C.PlotShapes(units)
 C.PlotNeighbourhood(9, radius=6, alpha=0.8)
 
 # %%
-
 
 
 # %%
